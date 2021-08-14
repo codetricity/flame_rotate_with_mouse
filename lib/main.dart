@@ -36,11 +36,9 @@ class MyGame extends BaseGame with TapDetector {
     // ship.angle = angle;
     //
 
-    // smoothly turn  ship
-
-    if (ship.angle - angle < -pi) {
-      angle = (2 * pi - angle) * -1;
-    }
+    // rotate clockwise or counter-clockwise depending
+    // on shortest angle
+    angle = getShortAngle(ship.angle, angle);
 
     // rotate to angle
     // ship.addEffect(RotateEffect(angle: angle, speed: 3));

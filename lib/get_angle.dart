@@ -58,3 +58,10 @@ double getAngle(Vector2 spritePosition, Vector2 tapPosition) {
   }
   return radians(angle);
 }
+
+double getShortAngle(double spriteAngle, double moveAngle) {
+  if (spriteAngle - moveAngle < -pi) {
+    return (2 * pi - moveAngle) * -1;
+  }
+  return moveAngle;
+}

@@ -36,26 +36,21 @@ class MyGame extends BaseGame with TapDetector {
     // ship.angle = angle;
     //
 
-    var angleDelta = ship.angle - angle;
+    // smoothly turn  ship
 
-    if (angleDelta > pi) {
-      print('angleDelta is greater than pi: $angleDelta');
-
-      var shortAngle = (2 * pi - angleDelta);
-      print('proposed angle: $angle');
-
-      print('short angle $shortAngle');
-    } else if (angleDelta < -pi) {
-      print('angleDelta is less than -pi $angleDelta');
-      print('proposed angle: $angle');
-      var shorterAngle = (2 * pi - angle) * -1;
-      print('shorter angle $shorterAngle');
-      print('ship angle ${ship.angle}');
-      angle = shorterAngle;
+    if (ship.angle - angle < -pi) {
+      angle = (2 * pi - angle) * -1;
     }
 
     // rotate to angle
-    ship.addEffect(RotateEffect(angle: angle, speed: 3));
-    // print(degrees(angle));
+    // ship.addEffect(RotateEffect(angle: angle, speed: 3));
+
+    // rotate to angle with animation curve easeInOutBack
+    // ship.addEffect(
+    //     RotateEffect(angle: angle, speed: 3, curve: Curves.easeInOutBack));
+
+    // decelerate
+    ship.addEffect(
+        RotateEffect(angle: angle, speed: 3, curve: Curves.decelerate));
   }
 }
